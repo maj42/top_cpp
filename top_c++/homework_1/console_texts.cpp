@@ -72,10 +72,9 @@ string task_2()
 
 string task_3()
 {
-    setlocale(LC_ALL, "Russian");
     string advertisement;
     return advertisement =
-        "\t\tПродам мопед\n\n"
+        "\t\tSelling a motorbike\n\n"
         "           r==                        \n"
         "      _   //                          \n"
         "      |_)//(''''':                    \n"
@@ -85,6 +84,6 @@ string task_3()
         "  : ' // ' : \\ \\ ''..'--:'-.. ':    \n"
         "  '. '' .'    \\ : ....--'.-'' .'     \n"
         "   ':..:'                ':..:'       "
-        "\n\n\t\tМопед не мой\n"
-        "\t\tТел. 123-456-789\n\n";
+        "\n\n\t\tIt's not my bike\n"
+        "\t\tTel. 123-456-789\n\n";
 }
