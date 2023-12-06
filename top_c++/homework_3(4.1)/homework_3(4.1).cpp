@@ -11,10 +11,23 @@ void fuelCalc();
 
 int main()
 {
-    //luckyNumber();
-    //numbersSwap();
-    //getMaxNumber();
-    fuelCalc();
+    int choice;
+    cout << "What fun activity are you planning today?\n\
+    1 - Check if the number is lucky\n\
+    2 - Swap some numbers\n\
+    3 - Get max number\n\
+    4 - Calculate the amount of fuel you need to add to fly.\n";
+    cin >> choice;
+    switch (choice) {
+        case 1: luckyNumber();
+            break;
+        case 2: numbersSwap();
+            break;
+        case 3: getMaxNumber();
+            break;
+        case 4: fuelCalc();
+            break;
+    }
 }
 
 int getNumber(int digits) {
