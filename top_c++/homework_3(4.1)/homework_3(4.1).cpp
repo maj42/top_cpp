@@ -107,7 +107,7 @@ void fuelCalc() {
     }
 
     if ((fuelCurrent / fuelConsumption) < distAB || (fuelCurrent / fuelConsumption) < distBC) {
-        cout << "Not enough fuel to fly this distance with this load.";
+        cout << "Not enough fuel to fly this distance with this load." << endl;
         return;
     }
    
@@ -116,10 +116,10 @@ void fuelCalc() {
     fuelConsumedBC = distBC * fuelConsumption;
 
     if ((fuelCurrent - fuelConsumedAB) > fuelConsumedBC) {
-        cout << "You don't have to add fuel, it's enough.";
+        cout << "You don't have to add fuel, it's enough." << endl;
         }
     else {
         fuelAdd = fuelConsumedBC - (fuelCurrent - fuelConsumedAB);
-        cout << "You have to add at least " << fuelAdd << "L of fuel in point B.";
+        cout << "You have to add at least " << fuelAdd << "L of fuel in point B." << endl;
     }
 }
