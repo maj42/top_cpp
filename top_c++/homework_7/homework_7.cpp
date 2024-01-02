@@ -15,7 +15,7 @@ int main()
 	//task1DoubleDigits();
 	//task2UniqueDigits();
 	//task3Delete3and6();
-	task4Dividers();
+	//task4Dividers();
 	//task5CubeSumAndSquare();
 	//task6AllDividers();
 	//task7CommonDividers();

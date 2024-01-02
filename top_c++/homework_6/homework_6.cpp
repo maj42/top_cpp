@@ -5,7 +5,8 @@ using namespace std;
 
 void task1Phonebook();
 
-void bubbleSortToOrder(long long* arraySort, int* arrayOrder, int count);
+void bubbleSortByMobile(long long* arrayMobile, int* arrayLandline, string* arrayNames, int arraySize);
+void bubbleSortByLandline(int* arrayLandline, long long* arrayMobile, string* arrayNames, int arraySize);
 
 int main()
 {
@@ -17,43 +18,68 @@ void task1Phonebook() {
     long long arrayMobile[arraySize] = { 89991234567, 89999876543, 89001234567, 89009876543, 89123456789 };
     int arrayLandline[arraySize] = { 567891, 123456, 987654, 345678, 234567 };
     string arrayNames[arraySize] = { "Vasya", "Jack", "Mary", "Katya", "Mike" };
-    int arrayOrder[arraySize] = { 0, 1, 2, 3, 4 };
 
     int choice = 3;
     while (choice <= 3 && choice >= 1) {
-        cout << "Enter your choice:\n1 - Sort by mobile\n2 - Sort by landline\n3 - Print phonebook\n4 - Exit\n";
+        cout << "Enter your choice:\n1 - Sort by mobile\n2 - Sort by landline\n3 - Print phonebook\nAny other key - Exit\n";
         cin >> choice;
         switch (choice) {
         case 1:
-            bubbleSortToOrder(arrayMobile, arrayOrder, arraySize);
-            cout << arrayOrder[0] << arrayOrder[1] << arrayOrder[2] << arrayOrder[3] << arrayOrder[4];
+            bubbleSortByMobile(arrayMobile, arrayLandline, arrayNames, arraySize);
             break;
         case 2:
-            bubbleSortToOrder(arrayLandline, arrayOrder, arraySize);
-            cout << arrayOrder[0] << arrayOrder[1] << arrayOrder[2] << arrayOrder[3] << arrayOrder[4];
+            bubbleSortByLandline(arrayLandline, arrayMobile, arrayNames, arraySize);
             break;
         case 3:
+            for (int i = 0; i < arraySize; i++) cout << "\t" << arrayNames[i] << "\t" << arrayMobile[i] << "\t" << arrayLandline[i] << "\n\n";
             break;
-        case 4:
+        default:
             break;
         }
     }
-    
-    
-
-    for (int i = 0; i < arraySize; i++) cout << arrayNames[i] << "\t" << arrayMobile[i] << "\t" << arrayLandline[i] << endl;
 }
 
-template<class T>
-void bubbleSortToOrder(T* arraySort, int* arrayOrder, int count) {
+void bubbleSortByMobile(long long* arrayMobile, int* arrayLandline, string* arrayNames, int count) {
     for (auto i = 0; i < count - 1; i++)
     {
-        for (auto j = i + 1; j < count; j++)
+        for (auto ii = i + 1; ii < count; ii++)
         {
-            if (arraySort[i] > arraySort[j]) {
-                int temp = arrayOrder[i];
-                arrayOrder[i] = arrayOrder[j];
-                arrayOrder[j] = temp;
+            if (arrayMobile[i] > arrayMobile[ii]) {
+
+                long long tempMobile = arrayMobile[i];
+                arrayMobile[i] = arrayMobile[ii];
+                arrayMobile[ii] = tempMobile;
+
+                int tempLandline = arrayLandline[i];
+                arrayLandline[i] = arrayLandline[ii];
+                arrayLandline[ii] = tempLandline;
+
+                string tempName = arrayNames[i];
+                arrayNames[i] = arrayNames[ii];
+                arrayNames[ii] = tempName;
+            }
+        }
+    }
+}
+
+void bubbleSortByLandline(int* arrayLandline, long long* arrayMobile, string* arrayNames, int count) {
+    for (auto i = 0; i < count - 1; i++)
+    {
+        for (auto ii = i + 1; ii < count; ii++)
+        {
+            if (arrayLandline[i] > arrayLandline[ii]) {
+
+                int tempLandline = arrayLandline[i];
+                arrayLandline[i] = arrayLandline[ii];
+                arrayLandline[ii] = tempLandline;
+
+                long long tempMobile = arrayMobile[i];
+                arrayMobile[i] = arrayMobile[ii];
+                arrayMobile[ii] = tempMobile;
+
+                string tempName = arrayNames[i];
+                arrayNames[i] = arrayNames[ii];
+                arrayNames[ii] = tempName;
             }
         }
     }
