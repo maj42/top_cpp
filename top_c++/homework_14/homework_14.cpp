@@ -9,7 +9,7 @@ int main()
     const char* str1{""};
     const char* str2{ "Hello world" };
     const char* str3{ "                " };
-    const char* str4{ "Hell\0o unreacheable world" };
+    const char* str4{ "Hell\0o unreachable world" };
     cout << strSize(str1) << "\n" << strSize(str2) << "\n" << strSize(str3) << "\n" << strSize(str4) << endl;
 }
 
