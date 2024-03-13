@@ -10,7 +10,7 @@ int main()
 {
     //task1();
     //task2();
-    //task3();
+    task3();
 }
 
 void task1() {
@@ -67,7 +67,7 @@ void task3() {
     }
 
     int shiftDir, shiftAmount, rowShift = 0, colShift = 0;
-    cout << "\nChoose the direction of the shift:\n1 - Up\n2 - Right\n3 - Down\n4 - Left\n";
+    cout << "\nChoose the direction of the shift:\n1 - Up\n2 - Right\n3 - Down\n4 - Left\n(no shift if unexpected input)\n";
     cin >> shiftDir;
     cout << "\nEnter the amount of steps to shift:\n";
     cin >> shiftAmount;
@@ -80,6 +80,8 @@ void task3() {
     case 3: rowShift -= shiftAmount;
         break;
     case 4: colShift += shiftAmount;
+        break;
+    default: // do not shift if input not in range
         break;
     }
 
