@@ -17,6 +17,7 @@ int main()
     } 
 }
 
+// Не знаю как выделить память чтоб доступ к ней сохранялся вне функции. Этот код выдаст Access Violation
 void myMemCpy(void* dest, void* src, size_t count) {
     dest = malloc(count);
     for (int i = 0; i < count; i++) {
