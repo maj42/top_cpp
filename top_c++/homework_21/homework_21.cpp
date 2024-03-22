@@ -96,7 +96,6 @@ void task4() {
     for (int i = 0; i < 20; ++i) arr[i] = rand() % 10;
 
     int duplArr[20]{ 0 };
-    cout << "Duplicate values:\n";
     for (int i = 0; i < 20; ++i) {
         if (duplArr[i] > 0) continue;
         for (int j = i + 1; j < 20; ++j) {
@@ -106,6 +105,7 @@ void task4() {
         }
     }
 
+    cout << "Duplicate values:\n";
     for (int i = 0; i < 20; ++i) {
         if (duplArr[i] == 1) cout << arr[i] << " ";
     }
