@@ -9,7 +9,7 @@ int main()
 {
     srand(time(0));
     //task1();
-    task2();
+    //task2();
 }
 
 void task1() {
