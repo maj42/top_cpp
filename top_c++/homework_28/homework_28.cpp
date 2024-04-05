@@ -136,14 +136,14 @@ int level7(string str) {
 }
 
 string moveUpperCase(string &str) {
-    string oldStr, newStr;
-    oldStr = str.substr(0);
-    for (char ch : str) {
-        if (ch >= 'A' && ch <= 'Z') {
-            newStr.append(1, ch);
-            if (!oldStr.empty()) oldStr.erase(oldStr.find(ch));
+    string upperStr;
+    int size = str.length();
+    for (int i = 0; i < size; ++i) {
+        if (str[i] >= 'A' && str[i] <= 'Z') {
+            upperStr.append(1, str[i]);
+            str.replace(str.find(str[i]), 1, "");
+            i--, size--;
         }
     }
-    str = oldStr.substr(0);
-    return newStr;
+    return upperStr;
 }
