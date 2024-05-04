@@ -13,11 +13,18 @@ class PhonebookEntry {
         fullname[name.size()] = '\0';
     }
 
+    PhonebookEntry(const PhonebookEntry& other) : fullname(other.fullname), address(other.address), phone(other.address) {}
+
+    PhonebookEntry(PhonebookEntry&& other) noexcept : 
+        fullname(std::move(other.fullname)),
+        address(std::move(other.address)),
+        phone(std::move(other.phone)) {}
+
     ~PhonebookEntry() {
         delete[] fullname;
     }
 
-    inline void appendEntry(std::list<PhonebookEntry> phonebook) {
+    void appendEntry(std::list<PhonebookEntry> phonebook) {
         phonebook.push_back(*this);
     }
 
@@ -64,11 +71,15 @@ int main() {
     std::list<PhonebookEntry> phonebook;
 
     PhonebookEntry entry1{"Vasya", "Moscow, Lenina str., apt 29", "+79998887766"};
-    //PhonebookEntry entry2{ "Kolya", "St. Petersburg, Pushkina str., apt 11", "+70001112233" };
-    entry1.appendEntry(phonebook);
-    //entry2.appendEntry(phonebook);
+    PhonebookEntry entry2{ "Kolya", "St. Petersburg, Pushkina str., apt 11", "+70001112233" };
+    
+    entry1.print();
+    entry2.print();
+    phonebook.push_back(std::move(entry1));
+    phonebook.push_back(std::move(entry2));
 
     entry1.print();
+    entry2.print();
     //entry2.redact("Kolya", "London, Main str., apt 11", "+10001112233");
     //entry2.print();
 
