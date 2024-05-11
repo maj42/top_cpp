@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 #include <list>
 #include <string>
@@ -9,53 +11,54 @@ class PhonebookEntry {
 
     public:
     PhonebookEntry(std::string name, std::string address, std::string phone) : fullname(new char[name.size() + 1]), address(address), phone(phone) {
-        name.copy(fullname, name.size());
-        fullname[name.size()] = '\0';
+        strcpy(fullname, name.c_str());
+    }
+
+    PhonebookEntry(const PhonebookEntry& other) :
+        fullname(new char[strlen(other.fullname)]),
+        address(other.address),
+        phone(other.phone) {
+        strcpy(fullname, other.fullname);
     }
 
     ~PhonebookEntry() {
-        delete[] fullname;
+        if (fullname != nullptr) delete[] fullname;
     }
 
-    inline void appendEntry(std::list<PhonebookEntry> phonebook) {
-        phonebook.push_back(*this);
-    }
-
-    void deleteEntry(std::list<PhonebookEntry> phonebook, std::string name) {
+    void deleteEntry(std::list<PhonebookEntry>& phonebook, std::string name) {
         std::list<PhonebookEntry>::iterator it = phonebook.begin();
-        for (PhonebookEntry entry : phonebook) {
+        for (PhonebookEntry& entry : phonebook) {
             if (name == entry.getNameStr()) {
-                entry.~PhonebookEntry();
                 phonebook.erase(it);
             }
             it++;
         }
     }
 
-    void redact(std::string chName, std::string chAddress, std::string chPhone) {
+    void redact(const std::string& chName, const std::string& chAddress, const std::string& chPhone) {
         address = chAddress;
         phone = chPhone;
         delete[] fullname;
-        char* fullname = new char[sizeof(chName) + 1];
-        chName.copy(fullname, chName.size());
-        fullname[chName.size()] = '\0';
+        fullname = new char[chName.size() + 1];
+        strcpy(fullname, chName.c_str());
     }
 
-    void search(std::list<PhonebookEntry> phonebook, std::string searchName) {
+    void search(std::list<PhonebookEntry>& phonebook, std::string searchName) {
         for (PhonebookEntry entry : phonebook) {
             if (searchName == entry.getNameStr()) {
                 std::cout << "Found!" << std::endl;
                 entry.print();
                 return;
             }
+            std::cout << "Not found" << std::endl;
         }
     }
 
-    std::string getNameStr() {
+    std::string getNameStr() const {
         return std::string(fullname);
     }
 
-    void print() {
+    void print() const {
         std::cout << "\t" << fullname << "\n" << address << "\n" << phone << std::endl; 
     }
 };
@@ -64,13 +67,12 @@ int main() {
     std::list<PhonebookEntry> phonebook;
 
     PhonebookEntry entry1{"Vasya", "Moscow, Lenina str., apt 29", "+79998887766"};
-    //PhonebookEntry entry2{ "Kolya", "St. Petersburg, Pushkina str., apt 11", "+70001112233" };
-    entry1.appendEntry(phonebook);
-    //entry2.appendEntry(phonebook);
-
+    PhonebookEntry entry2{ "Kolya", "St. Petersburg, Pushkina str., apt 11", "+70001112233" };
     entry1.print();
-    //entry2.redact("Kolya", "London, Main str., apt 11", "+10001112233");
-    //entry2.print();
+    entry2.redact("Kolya", "London, Main str., apt 11", "+10001112233");
+    entry2.print();
+    phonebook.push_back(entry1);
+    phonebook.push_back(entry2);
 
     return 0;
 }
