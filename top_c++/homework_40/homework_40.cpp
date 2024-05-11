@@ -1,20 +1,59 @@
-// homework_40.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+
+class Lift {
+    int lowFloor{};
+    int highFloor{};
+    bool powerOn{ false };
+    int currentFloor{};
+
+public:
+    Lift(int low, int high) {
+        if (low > high) {
+            lowFloor = high;
+            highFloor = low;
+        }
+        else {
+            lowFloor = low;
+            highFloor = high;
+        }
+        currentFloor = lowFloor;
+    }
+
+    bool powered() {
+        return powerOn;
+    }
+
+    int where() {
+        return currentFloor;
+    }
+
+    void pressPowerButton() {
+        powerOn ? powerOn = false : powerOn = true;
+    }
+
+    void go(int destFloor) {
+        if (!powerOn) {
+            std::cout << "Lift is not powered" << std::endl;
+            return;
+        }
+        if (destFloor < lowFloor) destFloor = lowFloor;
+        if (destFloor > highFloor) destFloor = highFloor;
+        std::cout << "Going to " << destFloor << " floor..." << std::endl;
+        currentFloor = destFloor;
+    }
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Lift lift1(1, 10);
+    Lift lift2(8, 2);
+    std::cout << std::boolalpha << "First lift: powered: " << lift1.powered() << "\tCurrent floor: " << lift1.where() << std::endl;
+    std::cout << std::boolalpha << "Second lift: powered: " << lift2.powered() << "\tCurrent floor: " << lift2.where() << std::endl;
+    lift1.pressPowerButton();
+    lift1.go(8);
+    lift2.go(232);
+    std::cout << std::boolalpha << "First lift: powered: " << lift1.powered() << "\tCurrent floor: " << lift1.where() << std::endl;
+    std::cout << std::boolalpha << "Second lift: powered: " << lift2.powered() << "\tCurrent floor: " << lift2.where() << std::endl;
+
+    return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
