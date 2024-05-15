@@ -9,24 +9,27 @@ class String {
 
 public:
     String(int len) : str(new char[len] {}), len(len) {
-        counter++;
+        String::counter++;
     }
+    
     String() : String(80) {}
+    
     String(const char* input, int len) {
         this->len = strlen(input);
         str = new char[len];
         strcpy(str, input);
-        counter++;
+        String::counter++;
     }
 
     String(const char* input) : String(input, 80) {}
-    ~String () {
-        counter--;
+
+    ~String() {
+        String::counter--;
         delete[] str;
     }
 
     static int count() {
-        return counter;
+        return String::counter;
     }
 
     void edit(const char* newStr, int size) {
@@ -41,7 +44,7 @@ public:
         strcpy(str, newStr);
     }
 
-    void print() {
+    void print() const{
         char* strP = str;
         while (*strP) std::cout << *(strP++);
         std::cout << std::endl;
@@ -51,12 +54,16 @@ int String::counter = 0;
 
 int main()
 {
-    String empty;
-    String hello{ "hello", 6 };
-    String sizeless{ "There's no size here" };
-    empty.print();
-    hello.print();
-    hello.edit("goodbye");
-    hello.print();
-    sizeless.print();
+    {
+        String empty;
+        String hello{ "hello", 6 };
+        String sizeless{ "There's no size here" };
+        std::cout << String::count() << std::endl;
+        empty.print();
+        hello.print();
+        hello.edit("goodbye");
+        hello.print();
+        sizeless.print();
+    }
+    std::cout << String::count() << std::endl;
 }
