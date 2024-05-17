@@ -18,10 +18,12 @@ Board::Board(std::string init) : Board() {
 
 Board& Board::autoInit(Board&) {
 	srand(time(0));
+	//TODO
 }
 
 Board& Board::manualInit(Board&) {
 	srand(time(0));
+	//TODO
 }
 
 char Board::getCell(int row, int col) const {
