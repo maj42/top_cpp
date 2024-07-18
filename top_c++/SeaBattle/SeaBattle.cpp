@@ -46,8 +46,8 @@ int main()
 {
     bool play = true;
     while (play) {
-        //greetings("Greetings    \nAnd welcome    \nI want to play a game...");
-        //logo("SEA BATTLE!!!");
+        greetings("Greetings    \nAnd welcome    \nI want to play a game...");
+        logo("SEA BATTLE!!!");
 
         bool humanPlayer = ask("Do you want to play yourself? Y/N: ");
         bool manualPlacement = false;

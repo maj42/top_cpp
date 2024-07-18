@@ -1,15 +1,31 @@
 #pragma once
+#include <iostream>
+#include <set>
+#include <chrono>
+#include <thread>
+#include "board.h"
+
+#define STARTING_GRIDS 10
+
+const bool DEBUG = true;
+
 class Board
 {
-	char* grid;
+	char grid[81];
+	std::set<int> startingFill;
+	int boardState;
+	Board& _randFill();
+	char _parseNum(std::string&) const;
+	char _parseCell(std::string&) const;
+	void _checkState();
+	bool _checkRowStatus(int) const;
+	bool _checkColStatus(int) const;
+	bool _checkCellStatus(int) const;
+
 public:
 	Board();
-	Board& randFill();
-	Board& move(char where, char num);
-	bool checkForWin();
-
+	Board& move(std::string, std::string);
+	bool checkWin() const;
 	friend std::ostream& operator<< (std::ostream&, Board&);
+
 };
-
-std::ostream& operator<< (std::ostream& str, Board& brd);
-
