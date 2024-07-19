@@ -7,7 +7,7 @@
 
 #define STARTING_GRIDS 10
 
-const bool DEBUG = true;
+const bool DEBUG = false;
 
 class Board
 {
