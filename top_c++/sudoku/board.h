@@ -13,7 +13,7 @@ class Board
 {
 	char grid[81];
 	std::set<int> startingFill;
-	int boardState;
+	int32_t boardState;
 	Board& _randFill();
 	char _parseNum(std::string&) const;
 	char _parseCell(std::string&) const;
