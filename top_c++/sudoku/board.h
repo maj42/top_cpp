@@ -27,5 +27,4 @@ public:
 	Board& move(std::string, std::string);
 	bool checkWin() const;
 	friend std::ostream& operator<< (std::ostream&, Board&);
-
 };
