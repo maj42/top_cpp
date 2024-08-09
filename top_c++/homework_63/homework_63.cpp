@@ -1,5 +1,3 @@
-//Удалите из unordered_map элементы, которые делятся на 2, и выведите ключи этих элементов.
-
 #include <iostream>
 #include <unordered_map>
 
